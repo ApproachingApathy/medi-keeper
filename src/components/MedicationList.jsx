@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Table, TableHead, TableRow, TableCell, Paper, Button} from '@material-ui/core'
 
 import { remove } from '../redux/medication-list/actions'
@@ -29,13 +30,15 @@ class MedicationList extends React.Component {
         let rows = listState.map(item => {
             return (
                 <TableRow key={item.ID} >
-                    <TableCell>{item.name}</TableCell>
+                    <TableCell> <Link to={'/details/' + item.ID}>{item.name}</Link></TableCell>
                     <TableCell> {item.dosage} </TableCell>
                     <TableCell> {item.alarms.morning ? '✔️' : ''} </TableCell>
                     <TableCell> {item.alarms.noon ? '✔️' : ''} </TableCell>
                     <TableCell> {item.alarms.evening ? '✔️' : ''} </TableCell>
                     <TableCell> {item.alarms.bed ? '✔️' : ''} </TableCell>
-                    <TableCell> <Button color='secondary' onClick={e=>this.handleDeleteButton(item.ID)} >Delete</Button> </TableCell>
+                    <TableCell>
+                        <Button color='secondary' onClick={e=>this.handleDeleteButton(item.ID)} >Delete</Button>
+                    </TableCell>
                 </TableRow>
 
             )

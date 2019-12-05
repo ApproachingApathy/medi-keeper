@@ -15,6 +15,12 @@ export default function reducer (state = initialState, action) {
             return {...state, list: state.list.filter(item => {
                 return (item.ID !== action.ID)
             })}
+        case types.FIND:
+            return {...state, found: state.list.filter(item => {
+                return (item.ID === action.ID)
+            })}
+        case types.CLEAR_FOUND:
+            return {...state, found: null}
         default:
             return {...state}
     }
