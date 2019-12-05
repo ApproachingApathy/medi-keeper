@@ -1,9 +1,16 @@
 import uuid from 'uuid/v1'
 
 export default class MedicationEntry {
-    constructor(name) {
+    constructor(obj) {
         this.ID = uuid()
-        this.name = name
+        this.name = obj.name || 'No Name Provided'
+        this.dosage = obj.dosage || 'Not Provided'
+        this.alarms = {
+            morning: obj.alarms.morning || false,
+            noon: obj.alarms.noon || false,
+            evening: obj.alarms.evening || false,
+            bed: obj.alarms.bed || false
+        }
 
         Object.seal(this)
     }

@@ -5,14 +5,14 @@ const initialState = {list:[]}
 export default function reducer (state = initialState, action) {
     switch (action.type) {
         case types.CREATE:
-            return {...state, list: state.list.concat(new Medication(action.insert.name || 'No Name Found'))}
+            return {...state, list: state.list.concat(new Medication(action.insert))}
         case types.EDIT:
             return {...state, list: state.list.map(item => {
-                if (item.ID == action.edit) return item.edit(action.edit)
+                if (item.ID === action.edit) return item.edit(action.edit)
                 else return item
             })}
         case types.REMOVE:
-            return {...state, medicationList: state.list.filter(item => {
+            return {...state, list: state.list.filter(item => {
                 return (item.ID !== action.ID)
             })}
         default:

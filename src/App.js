@@ -10,6 +10,7 @@ import { Provider } from 'react-redux'
 import { store } from './redux/store'
 import Header from './components/header/Header'
 import MedicationInput from './components/MedicationInput'
+import MedicationList from './components/MedicationList'
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 					<Header />
 				<Container maxWidth='md'>
 					<MedicationInput />
+					<MedicationList />
 				</Container>
 			</Router>
 		</Provider>
