@@ -1,0 +1,3 @@
+export const CREATE = 'MEDICATION_LIST_NEW'
+export const REMOVE = 'MEDICATION_LIST_REMOVE'
+export const EDIT = 'MEDICATION_LIST_EDIT'
