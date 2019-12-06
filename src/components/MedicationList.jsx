@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Table, TableHead, TableRow, TableCell, Paper, Button} from '@material-ui/core'
 
-import { remove } from '../redux/medication-list/actions'
-
+import { remove, edit } from '../redux/medication-list/actions'
+import MedicineListRow from './MedicineListRow'
 class MedicationList extends React.Component {
     constructor(props) {
         super(props)
@@ -25,28 +25,11 @@ class MedicationList extends React.Component {
         this.props.dispatch1(uuid)
     }
 
-    handleEditButton(e, uuid) {
-        const row = document.getElementById(`row-${uuid}`)
-
-
-    }
-
     render() {
         let listState = this.state.list
         let rows = listState.map(item => {
             return (
-                <TableRow id={`row-${item.ID}`} key={item.ID} >
-                    <TableCell> <Link to={'/details/' + item.ID}>{item.name}</Link></TableCell>
-                    <TableCell> {item.dosage} </TableCell>
-                    <TableCell> {item.alarms.morning ? '✔️' : ''} </TableCell>
-                    <TableCell> {item.alarms.noon ? '✔️' : ''} </TableCell>
-                    <TableCell> {item.alarms.evening ? '✔️' : ''} </TableCell>
-                    <TableCell> {item.alarms.bed ? '✔️' : ''} </TableCell>
-                    <TableCell>
-                        <Button color='primary' onClick={e=>this.handleEditButton(e, item.ID)} >Edit</Button>
-                        <Button color='secondary' onClick={e=>this.handleDeleteButton(item.ID)} >Delete</Button>
-                    </TableCell>
-                </TableRow>
+                <MedicineListRow item={item} saveDispatch={this.props.dispatch2} key={item.ID}/>
             )
         })
 
@@ -83,6 +66,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         dispatch1: (ID) => {
             dispatch(remove(ID))
+        },
+        dispatch2: (ID, editedObj) => {
+            dispatch(edit(ID, editedObj))
         }
     }
 }

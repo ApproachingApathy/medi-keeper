@@ -8,7 +8,9 @@ export default function reducer (state = initialState, action) {
             return {...state, list: state.list.concat(new Medication(action.insert))}
         case types.EDIT:
             return {...state, list: state.list.map(item => {
-                if (item.ID === action.edit) return item.edit(action.edit)
+                if (item.ID === action.ID) {
+                    return Object.assign(item, action.edit)
+                }
                 else return item
             })}
         case types.REMOVE:
