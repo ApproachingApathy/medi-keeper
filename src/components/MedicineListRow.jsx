@@ -25,6 +25,10 @@ export default class MedicineListRow extends React.Component {
         })
     }
 
+    handleDeleteButton(uuid) {
+        this.props.deleteDispatch(uuid)
+    }
+
     handleSubmit(e, uuid) {
 
         this.props.saveDispatch(this.props.item.ID, {
@@ -50,12 +54,34 @@ export default class MedicineListRow extends React.Component {
             return (
                 <TableRow id={`row-${this.props.item.ID}`} key={this.props.item.ID} >
                     
-                        <TableCell><TextField value={this.state.inputValues.name || this.props.item.name || ''} name='name' onChange={e=>this.handleChange(e)} /> </TableCell>
-                        <TableCell> <TextField value={this.state.inputValues.dosage || this.props.item.dosage || ''} name='dosage' onChange={e=>this.handleChange(e)} /> </TableCell>
-                        <TableCell> <Checkbox checked={typeof this.state.inputValues.morning !== 'undefined' ?  this.state.inputValues.morning : this.props.item.alarms.morning} name='morning' onChange={e=>this.handleChange(e)} /> </TableCell>
-                        <TableCell> <Checkbox checked={typeof this.state.inputValues.noon !== 'undefined' ? this.state.inputValues.noon : this.props.item.alarms.noon} name='noon' onChange={e=>this.handleChange(e)} /> </TableCell>
-                        <TableCell> <Checkbox checked={typeof this.state.inputValues.evening !== 'undefined' ? this.state.inputValues.evening : this.props.item.alarms.evening} name='evening' onChange={e=>this.handleChange(e)} /> </TableCell>
-                        <TableCell> <Checkbox checked={typeof this.state.inputValues.bed !== 'undefined' ? this.state.inputValues.bed : this.props.item.alarms.bed} name='bed' onChange={e=>this.handleChange(e)} /> </TableCell>
+                        <TableCell>
+                            <TextField value={this.state.inputValues.name || this.props.item.name || ''} name='name' 
+                            onChange={e=>this.handleChange(e)} /> 
+                        </TableCell>
+                        <TableCell> 
+                            <TextField value={this.state.inputValues.dosage || this.props.item.dosage || ''} name='dosage' 
+                            onChange={e=>this.handleChange(e)} /> 
+                        </TableCell>
+                        <TableCell> 
+                            <Checkbox 
+                            checked={typeof this.state.inputValues.morning !== 'undefined' ?  this.state.inputValues.morning : this.props.item.alarms.morning} 
+                            name='morning' onChange={e=>this.handleChange(e)} /> 
+                        </TableCell>
+                        <TableCell> 
+                            <Checkbox 
+                            checked={typeof this.state.inputValues.noon !== 'undefined' ? this.state.inputValues.noon : this.props.item.alarms.noon} name='noon' 
+                            onChange={e=>this.handleChange(e)} /> 
+                        </TableCell>
+                        <TableCell> 
+                            <Checkbox 
+                            checked={typeof this.state.inputValues.evening !== 'undefined' ? this.state.inputValues.evening : this.props.item.alarms.evening} 
+                            name='evening' onChange={e=>this.handleChange(e)} /> 
+                        </TableCell>
+                        <TableCell> 
+                            <Checkbox 
+                            checked={typeof this.state.inputValues.bed !== 'undefined' ? this.state.inputValues.bed : this.props.item.alarms.bed} name='bed' 
+                            onChange={e=>this.handleChange(e)} /> 
+                        </TableCell>
                         <TableCell>
                             <Button id='button-save' color='primary' type='submit' onClick={e=>this.handleSubmit(e, this.props.item.ID)}>Save</Button>
                         </TableCell>

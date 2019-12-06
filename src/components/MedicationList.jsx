@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { Table, TableHead, TableRow, TableCell, Paper, Button} from '@material-ui/core'
 
 import { remove, edit } from '../redux/medication-list/actions'
@@ -29,7 +28,7 @@ class MedicationList extends React.Component {
         let listState = this.state.list
         let rows = listState.map(item => {
             return (
-                <MedicineListRow item={item} saveDispatch={this.props.dispatch2} key={item.ID}/>
+                <MedicineListRow item={item} saveDispatch={this.props.dispatch2} deleteDispatch={this.props.dispatch1} key={item.ID}/>
             )
         })
 

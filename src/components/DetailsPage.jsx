@@ -39,17 +39,17 @@ class MedicationDetails extends React.Component {
                 return (
                     <>
                         <h2> {'Labeling Information for ' + this.props.found[0].name} </h2>
-                        <a href={`https://www.drugs.com/search.php?searchterm=${this.props.found[0].name}`}>Look for this on Drugs.com</a>
+                        <a href={`https://www.drugs.com/search.php?searchterm=${this.props.found[0].name}`} rel='noopener noreferrer' target='_blank'>Look for this on Drugs.com</a>
                         <Paper>
                             {this.state.info ? null : <p>Couldn't find item, please ensure that the item's name is spelled correctly</p>}
                             <Card>
-                                <h3>Information</h3>
+                            {this.state.info ? this.state.info.patient_medication_information ? <h3>Information</h3> : null : null}
                                 <p>
                                     {this.state.info ? this.state.info.patient_medication_information : null}
                                 </p>
                             </Card>
                             <Card>
-                                <h3>Warning</h3>
+                                {this.state.info ? this.state.info.boxed_warning ? <h3>Warning</h3> : null : null}
                                 <p>
                                     {this.state.info ? this.state.info.boxed_warning: null}
                                 </p>
