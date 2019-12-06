@@ -25,11 +25,17 @@ class MedicationList extends React.Component {
         this.props.dispatch1(uuid)
     }
 
+    handleEditButton(e, uuid) {
+        const row = document.getElementById(`row-${uuid}`)
+
+
+    }
+
     render() {
         let listState = this.state.list
         let rows = listState.map(item => {
             return (
-                <TableRow key={item.ID} >
+                <TableRow id={`row-${item.ID}`} key={item.ID} >
                     <TableCell> <Link to={'/details/' + item.ID}>{item.name}</Link></TableCell>
                     <TableCell> {item.dosage} </TableCell>
                     <TableCell> {item.alarms.morning ? '✔️' : ''} </TableCell>
@@ -37,10 +43,10 @@ class MedicationList extends React.Component {
                     <TableCell> {item.alarms.evening ? '✔️' : ''} </TableCell>
                     <TableCell> {item.alarms.bed ? '✔️' : ''} </TableCell>
                     <TableCell>
+                        <Button color='primary' onClick={e=>this.handleEditButton(e, item.ID)} >Edit</Button>
                         <Button color='secondary' onClick={e=>this.handleDeleteButton(item.ID)} >Delete</Button>
                     </TableCell>
                 </TableRow>
-
             )
         })
 

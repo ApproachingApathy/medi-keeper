@@ -39,6 +39,7 @@ class MedicationDetails extends React.Component {
                 return (
                     <>
                         <h2> {'Labeling Information for ' + this.props.found[0].name} </h2>
+                        <a href={`https://www.drugs.com/search.php?searchterm=${this.props.found[0].name}`}>Look for this on Drugs.com</a>
                         <Paper>
                             {this.state.info ? null : <p>Couldn't find item, please ensure that the item's name is spelled correctly</p>}
                             <Card>
@@ -53,7 +54,6 @@ class MedicationDetails extends React.Component {
                                     {this.state.info ? this.state.info.boxed_warning: null}
                                 </p>
                             </Card>
-                            <a href={`https://www.drugs.com/search.php?searchterm=${this.props.found[0].name}`}>Look for on Drugs.com</a>
                         </Paper>
                     </>
                 )
@@ -65,7 +65,6 @@ class MedicationDetails extends React.Component {
         }
         return (
             <>
-                <h1>Hello</h1>
                 {details()}
             </>
         )
